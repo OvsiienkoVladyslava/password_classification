@@ -11,7 +11,7 @@ After experimenting with models (file PasswordClassificationExperiments.ipynb), 
     
 `git clone --recurse-submodules https://github.com/OvsiienkoVladyslava/password_classification.git`  
 
-2.Make sure that you fulfill all the requirements in requirements.txt
+2.Make sure that you fulfill all the requirements: Python 3.9 and other in requirements.txt.
  
 `pip install -r requirements.txt`
 
