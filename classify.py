@@ -1,13 +1,19 @@
 import argparse
 import pandas as pd
 import numpy as np
-import pickle
 import xgboost
 
 from data_preprocessing import extract_characters
 
 
 def process_input(options: argparse.Namespace):
+    """
+    Processes parsed arguments, prepare data for predicting, predict password strength,
+    save predictions in file/print predictions in terminal
+
+    :param options: options consists of source filepath, results filepath
+    and label to save file with predictions (0 or 1) in format argparse Namespace
+    """
     data = pd.read_csv(options.source, names=['password'])
 
     data['password'] = data['password'].astype(str)
@@ -30,7 +36,14 @@ def process_input(options: argparse.Namespace):
         print(predictions_frame)
 
 
-def predict(input_data: np.ndarray):
+def predict(input_data: np.ndarray) -> np.ndarray:
+    """
+    Predicts password strength by loaded model 'xgbclassifier'
+
+    :param input_data: passwords features(length, number of digits, uppercase and lowercase letters, other symbols)
+     in numpy array format
+    :return: array of predicted password strength (0 - weak, 1 - medium, 2 - strong)
+    """
     xgb_model_loaded = xgboost.XGBClassifier()
     xgb_model_loaded.load_model('./xgbclassifier')
     predictions = xgb_model_loaded.predict(input_data)
