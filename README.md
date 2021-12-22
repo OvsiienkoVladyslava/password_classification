@@ -1,5 +1,5 @@
 # Password classification
-##Goal
+### Goal
 The task was to classify password strength (3 classes: weak, medium, strong) using data from 000webhost leak that is available
 online.
 
